@@ -1,0 +1,163 @@
+body{
+    margin: 0;
+    font-family: 'Arvo', serif !important;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #373737;
+}
+
+*,
+*before,
+*after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+/* Navigation */
+
+.nav-font{
+	font-family: 'Arvo', serif;
+}
+
+
+/* Main content Admin panel */
+
+.category-description{
+	background-color: #79aec8;
+}
+
+.category-item{
+	border-bottom: 1px dashed #373737; 
+	display: flex;
+	justify-content: space-between;
+}
+
+.cat-link{
+	font-family: 'Arvo', serif;
+	color: #373737;
+	text-decoration: none;
+}
+
+/* Site navigation */
+
+.my-links{
+	color: #373737;
+}
+
+/* Main content index page */
+
+
+
+
+/* Left side navigation */
+
+
+.side-nav-link{
+	text-decoration: none !important;
+	color: #373737;
+}
+
+.li-back{
+	transition: background .1s linear !important;
+}
+
+.li-back:hover{
+	background-color: #79eb7d;
+}
+
+.list-group{
+	font-family: 'Arvo', serif !important; 
+}
+
+
+/* Products */
+
+.card-text{
+	color: green !important;
+}
+
+.but-holder{
+	display: flex;
+}
+
+.card{
+	font-family: 'Arvo', serif !important; 
+}
+
+/* Pagination */
+
+.page-nav{
+	justify-content: flex-end !important;
+}
+
+.page-link{
+	font-family: 'Arvo', serif !important; 
+	color: #373737 !important;
+	transition: background .1s linear !important;
+}
+
+.page-link:hover{
+	background-color: #79eb7d !important;
+}
+
+/* Icons */
+
+.fa-facebook{
+    color: #373737;
+    margin-left: 25px;
+}
+
+.fa-twitter{
+    color: #373737;
+    margin-left: 25px;
+}
+
+.fa-instagram{
+    color: #373737;
+    margin-left: 25px;
+}
+
+
+/* Footer */
+
+.ref{
+	text-decoration: none !important;
+	color: #373737;
+}
+
+
+
+/* Product Page */
+
+
+
+
+/* Detailed Product Info */
+
+.product-info{
+	border-bottom: 1px dashed #373737;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
