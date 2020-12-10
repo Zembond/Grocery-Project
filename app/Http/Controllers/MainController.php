@@ -12,7 +12,8 @@ class MainController extends Controller
 {
     public function home(){
         $products = new ProductsModel();
-        return view('index', ['items' => $products->all()]);
+        $categories = new CategoriesModel();
+        return view('index', ['items' => $products->all(), 'cats' => $categories->all()]);
     }
 
     public function team(){
@@ -69,8 +70,9 @@ class MainController extends Controller
     public function getProduct($id){
 
         $product = new ProductsModel();
+        $categories = new CategoriesModel();
 
-        return view('product', ['item' => $product->find($id)]);
+        return view('product', ['item' => $product->find($id), 'cats' => $categories->all()]);
     }
 
     public function getCategory($id){
@@ -115,5 +117,12 @@ class MainController extends Controller
 
         return redirect()->route('admin');
 
+    }
+
+    public function categoryOne($code){
+
+        $category = CategoriesModel::where('id', $code)->first();
+        $cats = CategoriesModel::all();
+        return view('category', compact('category', 'cats'));
     }
 }

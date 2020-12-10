@@ -10,36 +10,11 @@
                         <li class="list-group-item" style="background-color: #79eb7d;">
                             Categories
                         </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Baker</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Beer</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Beverages</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Cheese</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Dairy</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Deli</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Fruit</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Meals</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Meet</a>
-                        </li>
-                        <li class="list-group-item li-back">
-                            <a class="side-nav-link" href="#">Seafood</a>
-                        </li>
+                        @foreach($cats as $cat)
+                            <li class="list-group-item li-back">
+                                <a class="side-nav-link" href="/category/{{ $cat->id }}">{{ $cat->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div> <!-- side navigation -->
                 <div class="side-navigation mt-4">
@@ -66,8 +41,11 @@
                                     <h5 class="card-title">{{ $item->name }}</h5>
                                     <p class="card-text">{{ $item->price }} KZT</p>
                                     <div class="but-holder">
-                                        <a href="/product/{{ $item->id }}" class="btn btn-primary">View Details</a>
-                                        <a href="#" class="btn btn-warning">Add to Cart</a>
+                                        <form action="{{ route('basket-add', $item) }}" method="post">
+                                            @csrf
+                                            <a href="/product/{{ $item->id }}" class="btn btn-primary">View Details</a>
+                                            <button type="submit" class="btn btn-warning">Add to Cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div> <!-- product card -->

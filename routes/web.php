@@ -40,3 +40,11 @@ Route::post('/editcategory', [\App\Http\Controllers\MainController::class, 'edit
 Route::get('/productdetails/{id}', [\App\Http\Controllers\MainController::class, 'getItem']);
 
 Route::post('/editproduct', [\App\Http\Controllers\MainController::class, 'editItem']);
+
+Route::get('/category/{code}', [\App\Http\Controllers\MainController::class, 'categoryOne']);
+
+Route::get('/basket', [\App\Http\Controllers\BasketController::class, 'basket']);
+
+Route::get('/basket/place', [\App\Http\Controllers\BasketController::class, 'basketPlace']);
+
+Route::post('/basket/add/{id}', [\App\Http\Controllers\BasketController::class, 'basketAdd'])->name('basket-add');

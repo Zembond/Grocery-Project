@@ -9,4 +9,16 @@ class ProductsModel extends Model
 {
     public $timestamps = false;
     use HasFactory;
+
+    /*public function getCategory(){
+
+        return $category = CategoriesModel::find($this->category_id);
+
+    }*/
+
+    public function category(){
+
+        return $category = CategoriesModel::where('id', $this->category_id)->get();
+        //return $this->belongsTo(CategoriesModel::class);
+    }
 }
