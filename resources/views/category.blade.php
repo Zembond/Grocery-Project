@@ -41,29 +41,19 @@
                                         <h5 class="card-title">{{ $item->name }}</h5>
                                         <p class="card-text">{{ $item->price }} KZT</p>
                                         <div class="but-holder">
-                                            <a href="/product/{{ $item->id }}" class="btn btn-primary">View Details</a>
-                                            <a href="#" class="btn btn-warning">Add to Cart</a>
+                                            <form action="{{ route('basket-add', $item) }}" method="post">
+                                                @csrf
+                                                <a href="/product/{{ $item->id }}" class="btn btn-primary">View Details</a>
+                                                <button type="submit" class="btn btn-warning">Add to Cart</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div> <!-- product card -->
                             </div> <!-- inner col-md-4 -->
                         @endforeach
                     </div> <!-- inner row -->
-                    <nav class="mt-4" aria-label="Pagination">
-                        <ul class="pagination page-nav">
-                            <li class="page-item">
-                                <a class="page-link" href="#">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav> <!-- pagination -->
+
+
                 </div> <!-- col-md-9 -->
             </div> <!-- row -->
         </div> <!-- container -->

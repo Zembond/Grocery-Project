@@ -53,11 +53,12 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <span class="badge">1</span>
+                                    <span class="badge">{{ $item->pivot->count }}</span>
                                     <div class="btn-group">
-                                        <a type="button" class="btn btn-danger" href="#">
-                                            <span class="glyphicon glyphicon-minus" aria-hidden="true">-</span>
-                                        </a>
+                                        <form action="{{ route('basket-remove', $item) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-minus" aria-hidden="true">-</span></button>
+                                        </form>
                                         <form action="{{ route('basket-add', $item) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true">+</span></button>
@@ -65,18 +66,18 @@
                                     </div>
                                 </td>
                                 <td>{{ $item->price }} KZT</td>
-                                <td>ammo</td>
+                                <td>{{ $item->getPriceForCount() }}</td>
                             </tr>
                         @endforeach
-                        @endif
                         <tr>
                             <td colspan="3">Total amount: </td>
-                            <td>ammo</td>
+                            <td>{{ $order->getFullPrice() }}</td>
                         </tr>
+                        @endif
                         </tbody>
                     </table>
                     <div class="btn-group pull-right" role="group">
-                        <button type="submit" class="btn btn-success">Checkout</button>
+                        <a type="button" class="btn btn-success" href="{{ route('basket-place') }}">Checkout</a>
                     </div>
                 </div> <!-- col-md-9 -->
             </div> <!-- row -->

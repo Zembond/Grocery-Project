@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoriesModel;
+use App\Models\Order;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use Illuminate\Tests\Integration\Database\EloquentHasManyThroughTest\Category;
@@ -11,9 +12,12 @@ use Illuminate\Tests\Integration\Database\EloquentHasManyThroughTest\Category;
 class MainController extends Controller
 {
     public function home(){
-        $products = new ProductsModel();
-        $categories = new CategoriesModel();
-        return view('index', ['items' => $products->all(), 'cats' => $categories->all()]);
+        $categories = CategoriesModel::get();
+        $products = ProductsModel::paginate(9);
+        //$products = new ProductsModel();
+/*        $categories = new CategoriesModel();*/
+        //return view('index', ['items' => $products->all(), 'cats' => $categories->all()]);
+        return view('index', compact('categories', 'products'));
     }
 
     public function team(){
@@ -124,5 +128,10 @@ class MainController extends Controller
         $category = CategoriesModel::where('id', $code)->first();
         $cats = CategoriesModel::all();
         return view('category', compact('category', 'cats'));
+    }
+
+    public function orders(){
+        $orders = Order::where('status', 1)->get();
+        return view('orders', compact('orders'));
     }
 }

@@ -10,7 +10,7 @@
                         <li class="list-group-item" style="background-color: #79eb7d;">
                             Categories
                         </li>
-                        @foreach($cats as $cat)
+                        @foreach($categories as $cat)
                             <li class="list-group-item li-back">
                                 <a class="side-nav-link" href="/category/{{ $cat->id }}">{{ $cat->name }}</a>
                             </li>
@@ -32,8 +32,11 @@
                 </div> <!-- side navigation -->
             </div> <!-- col-md-3 -->
             <div class="col-md-9 offset-1">
+                @if(session()->has('success'))
+                    <p class="alert alert-success">{{ session()->get('success') }}</p>
+                @endif
                 <div class="row">
-                    @foreach($items as $item)
+                    @foreach($products as $item)
                         <div class="col-md-4 mt-3">
                             <div class="card">
                                 <img src="{{ $item->picture_url }}"  width="250px" height="250px" class="card-img-top" alt="...">
@@ -52,7 +55,11 @@
                         </div> <!-- inner col-md-4 -->
                     @endforeach
                 </div> <!-- inner row -->
-                <nav class="mt-4" aria-label="Pagination">
+                    <div class="container text-center mt-3">
+                        {{ $products->links() }}
+                    </div>
+
+                {{--<nav class="mt-4" aria-label="Pagination">
                     <ul class="pagination page-nav">
                         <li class="page-item">
                             <a class="page-link" href="#">Previous</a>
@@ -66,7 +73,7 @@
                             <a class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav> <!-- pagination -->
+                </nav> <!-- pagination -->--}}
             </div> <!-- col-md-9 -->
         </div> <!-- row -->
     </div> <!-- container -->

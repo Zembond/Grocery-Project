@@ -21,4 +21,11 @@ class ProductsModel extends Model
         return $category = CategoriesModel::where('id', $this->category_id)->get();
         //return $this->belongsTo(CategoriesModel::class);
     }
+
+    public function getPriceForCount(){
+        if(!is_null($this->pivot)){
+            return $this->pivot->count * $this->price;
+        }
+        return $this->price;
+    }
 }

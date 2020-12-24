@@ -26,17 +26,26 @@
                 <h6><a class="cat-link" href="/products">Products</a></h6>
             </div>
             <div class="d-flex justify-content-end mb-3">
-                <a class="cat-link mr-3" href="#">Add</a>
-                <a class="cat-link" href="#">Change</a>
+                <a class="cat-link mr-3" href="/products">Add</a>
+                <a class="cat-link" href="/products">Change</a>
             </div>
         </div> <!-- category-item -->
         <div class="category-item mt-3">
             <div class="d-flex justify-content-start ml-3 mt-3">
                 <h6><a class="cat-link" href="/categories">Categories</a></h6>
             </div>
-            <div class="d-flex justify-content-end mb-5">
-                <a class="cat-link mr-3" href="#">Add</a>
-                <a class="cat-link" href="#">Change</a>
+            <div class="d-flex justify-content-end mb-3">
+                <a class="cat-link mr-3" href="/categories">Add</a>
+                <a class="cat-link" href="/categories">Change</a>
+            </div>
+        </div> <!-- category-item -->
+        <div class="category-item mt-3">
+            <div class="d-flex justify-content-start ml-3 mt-3">
+                <h6><a class="cat-link" href="/orders">Orders</a></h6>
+            </div>
+            <div class="d-flex justify-content-end mb-3">
+                <a class="cat-link mr-3" href="/orders">Add</a>
+                <a class="cat-link" href="/orders">Change</a>
             </div>
         </div> <!-- category-item -->
     </section> <!-- section container -->

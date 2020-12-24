@@ -54,11 +54,8 @@
                 <div>
                     <h3>{{ $item->name }}</h3>
                     <p>Price: {{ $item->price }}KZT / KG</p>
-                    <form class="form">
-                        <div class="form-group mb-2">
-                            <label>Count: </label>
-                            <input type="number" class="form-control">
-                        </div>
+                    <form class="form" action="{{ route('basket-add', $item) }}" method="post">
+                        @csrf
                         <button type="submit" class="btn btn-success mb-2">Add to Cart</button>
                     </form>
                 </div>

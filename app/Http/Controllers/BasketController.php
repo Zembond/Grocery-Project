@@ -23,14 +23,20 @@ class BasketController extends Controller
     }
 
     public function basketPlace(){
-        return view('order');
+        $cats = CategoriesModel::all();
+        $orderId = session('orderId');
+
+        if(is_null($orderId)){
+            return redirect()->route('main-home');
+        }
+        $order = Order::findOrFail($orderId);
+        return view('order', compact('cats', 'order'));
     }
 
     public function basketAdd($productId){
         $orderId = session('orderId');
         if (is_null($orderId)){
             $order = Order::create()->id;
-            //dd($order);
             $idshka = $order;
             session(['orderId' => $idshka]);
             $order = Order::findOrFail($idshka);
@@ -38,9 +44,63 @@ class BasketController extends Controller
             $order = Order::findOrFail($orderId);
         }
 
-        $order->products()->attach($productId);
-        $cats = CategoriesModel::all();
+        if($order->products->contains($productId)){
+            $pivotRow = $order->products()->where('products_model_id', $productId)->first()->pivot;
+            $pivotRow->count++;
+            $pivotRow->update();
+        } else{
+            $order->products()->attach($productId);
+        }
 
-        return view('basket', compact('order', 'cats'));
+
+        return redirect()->route('basket');
+    }
+
+    public function basketRemove($productId){
+
+        $orderId = session('orderId');
+
+        if(is_null($productId)){
+            return redirect()->route('basket');
+        }
+
+        $order = Order::findOrFail($orderId);
+
+        if($order->products->contains($productId)){
+            $pivotRow = $order->products()->where('products_model_id', $productId)->first()->pivot;
+            if($pivotRow->count < 2){
+                $order->products()->detach($productId);
+            } else{
+                $pivotRow->count--;
+                $pivotRow->update();
+            }
+
+        }
+
+        return redirect()->route('basket');
+    }
+
+    public function basketConfirm(Request $request){
+
+        $orderId = session('orderId');
+
+        if(is_null($orderId)){
+            return redirect()->route('home');
+        }
+        $order = Order::findOrFail($orderId);
+        $order->name = $request->name;
+        $order->phone_number = $request->phone;
+        $order->status = 1;
+        $success = $order->save();
+
+        if($success){
+            session()->flash('success', 'Your order has been accepted for processing');
+        } else{
+            session()->flash('warning', 'There is some error');
+        }
+
+        session()->forget('orderId');
+
+        return redirect()->route('main-home');
     }
 }
